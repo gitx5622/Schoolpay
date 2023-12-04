@@ -15,7 +15,7 @@ import {
 } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
-const index = () => {
+const Header = () => {
   const router = useRouter();
   return (
     <>
@@ -91,4 +91,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Header;
