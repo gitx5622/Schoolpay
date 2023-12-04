@@ -7,11 +7,11 @@ import { useRouter } from "next/navigation";
 
 const Sidebar = () => {
   const router = useRouter();
-  const [bg, setBg] = useState(2);
+  const [selectedIndex, setSelectedIndex] = useState(2);
 
   const handleClick = (item) => {
+    setSelectedIndex(item.id);
     router.push(item.path);
-    setBg(item.id);
   };
 
   return (
@@ -32,15 +32,22 @@ const Sidebar = () => {
         {(item) => (
           <ListboxItem
             key={item.id}
-            color={bg !== "" ? "primary" : "default"}
-            className={`${bg}:bg-blue-600 p-5 text-2xl active"]`}
+            color={"primary"}
             showDivider={true}
-            onPress={() => handleClick(item)}
+            textValue=""
           >
-            <h3 className="text-md flex gap-3 items-center">
-              <div className="text-sm">{item.icon}</div>
-              {item.title}
-            </h3>
+            <button
+              key={item.id}
+              onClick={() => handleClick(item)}
+              className={`btn ${
+                selectedIndex === item.id ? "active" : ""
+              } active:bg-violet-700`}
+            >
+              <h3 className="text-md flex gap-3 items-center">
+                <div className="text-sm">{item.icon}</div>
+                {item.title}
+              </h3>
+            </button>
           </ListboxItem>
         )}
       </Listbox>

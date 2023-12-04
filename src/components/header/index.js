@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Navbar,
@@ -9,12 +10,13 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  Avatar,
   User,
   Divider,
 } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 const index = () => {
+  const router = useRouter();
   return (
     <>
       <Navbar shouldHideOnScroll>
@@ -71,7 +73,11 @@ const index = () => {
                   <DropdownItem key="help_and_feedback">
                     Help & Feedback
                   </DropdownItem>
-                  <DropdownItem key="logout" color="danger">
+                  <DropdownItem
+                    key="logout"
+                    color="danger"
+                    onClick={() => router.push("/")}
+                  >
                     Log Out
                   </DropdownItem>
                 </DropdownMenu>

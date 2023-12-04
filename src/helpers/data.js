@@ -26,25 +26,25 @@ const navList = [
     id: 2,
     title: "Dashboard",
     path: "/home/dashboard",
-    icon: <div class="icons8-tinder"></div>,
+    icon: <div className="icons8-tinder"></div>,
   },
   {
     id: 3,
     title: "Schools",
     path: "/home/schools",
-    icon: <div class="icons8-home"></div>,
+    icon: <div className="icons8-home"></div>,
   },
   {
     id: 4,
     title: "User Management",
     path: "/home/users",
-    icon: <div class="icons8-myspace"></div>,
+    icon: <div className="icons8-myspace"></div>,
   },
   {
     id: 5,
     title: "Settings",
     path: "/home/settings",
-    icon: <div class="icons8-services"></div>,
+    icon: <div className="icons8-services"></div>,
   },
 ];
 

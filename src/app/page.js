@@ -1,12 +1,15 @@
+"use client";
 import { Button, Input } from "@nextui-org/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import Logo from "../../public/equity.svg";
 import Microsoft from "../../public/microsoft.svg";
+
 export default function Home() {
-  // const [forgot, setForgot] = useState(false);
+  const router = useRouter();
   return (
-    <div class={`flex`}>
-      <div class="grow-[8]">
+    <div className={`flex`}>
+      <div className="grow-[8]">
         <div className="bg-[#871914] h-screen text-white pt-24 px-7">
           <Image src={Logo} width={120} height={120} alt="Logo" />
           <div className="text-6xl font-semibold pt-10">
@@ -17,7 +20,7 @@ export default function Home() {
           <div className="text-2xl">More than just banking</div>
         </div>
       </div>
-      <div class="grow-0">
+      <div className="grow-0">
         <div className="pt-9 px-5">
           <h1 className="font-semibold">Hello there,</h1>
           <h5>Sign in to continue</h5>
@@ -59,7 +62,7 @@ export default function Home() {
                 color="danger"
                 fullWidth={true}
                 className="bg-[#871914] text-white"
-                // startContent={<UserIcon />}
+                onClick={() => router.push("/home/dashboard")}
               >
                 Sign In User
               </Button>

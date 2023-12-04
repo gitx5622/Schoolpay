@@ -34,7 +34,9 @@ const Dashboard = () => {
                 <p className="text-tiny text-black/60 uppercase font-bold">
                   Available
                 </p>
-                <h4 className="text-black font-medium text-2xl">Schools : 30</h4>
+                <h4 className="text-black font-medium text-2xl">
+                  Schools : 30
+                </h4>
               </CardHeader>
               <Image
                 removeWrapper
@@ -93,7 +95,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <ChartComponent height={350} />
+      <ChartComponent />
     </div>
   );
 };
