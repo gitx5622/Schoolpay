@@ -23,7 +23,7 @@ import { SearchIcon } from "../../components/icons/SearchIcon";
 import { ChevronDownIcon } from "../../components/icons/ChevronDownIcon";
 import { columns, users, statusOptions } from "../../helpers/data";
 import { capitalize } from "../../utils";
-import ModalComponent from "@/components/Modal";
+import ModalComponent from "../../components/modal";
 
 const variants = ["flat", "bordered", "underlined", "faded"];
 
