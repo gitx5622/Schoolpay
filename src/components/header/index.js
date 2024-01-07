@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import { useState, useEffect } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -13,16 +13,46 @@ import {
   User,
   Divider,
 } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { FiAlignJustify } from "react-icons/fi";
+import axios from "axios";
+import { capitalize } from "@/utils";
 
 const Header = () => {
   const router = useRouter();
+  const pathname = usePathname();
+  const [data, setData] = useState("nothing");
+
+  const logout = async () => {
+    try {
+      await axios.get("/api/users/logout");
+      router.push("/auth/login");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const getUserDetails = async () => {
+    const res = await axios.get("/api/users/me");
+    setData(res?.data.data);
+    console.log(res);
+  };
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
   return (
     <>
       <Navbar shouldHideOnScroll>
-        <NavbarBrand style={{ marginLeft: "-40px" }}>
+        <NavbarBrand style={{ marginLeft: "-55px" }}>
+          <FiAlignJustify style={{ fontSize: "26px", cursor: "pointer" }} />{" "}
+          &nbsp; &nbsp;&nbsp;
           <h1>Showing Results for : &nbsp;</h1>
-          <p className="font-bold text-inherit"> Users</p>
+          <p className="font-bold text-inherit">
+            {" "}
+            {capitalize(pathname.slice(6))}
+          </p>
         </NavbarBrand>
         <hr />
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
@@ -38,7 +68,7 @@ const Header = () => {
           </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="#">
-              Users
+              Students
             </Link>
           </NavbarItem>
         </NavbarContent>
@@ -51,17 +81,17 @@ const Header = () => {
                     as="button"
                     avatarProps={{
                       isBordered: true,
-                      src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+                      src: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
                     }}
                     className="transition-transform"
-                    description="@tonyreichert"
-                    name="Tony Reichert"
+                    description={data.email}
+                    name={data.username}
                   />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User Actions" variant="flat">
                   <DropdownItem key="profile" className="h-14 gap-2">
                     <p className="font-bold">Signed in as</p>
-                    <p className="font-bold">@tonyreichert</p>
+                    <p className="font-bold">{data.username}</p>
                   </DropdownItem>
                   <DropdownItem key="settings">My Settings</DropdownItem>
                   <DropdownItem key="team_settings">Team Settings</DropdownItem>
@@ -73,11 +103,7 @@ const Header = () => {
                   <DropdownItem key="help_and_feedback">
                     Help & Feedback
                   </DropdownItem>
-                  <DropdownItem
-                    key="logout"
-                    color="danger"
-                    onClick={() => router.push("/")}
-                  >
+                  <DropdownItem key="logout" color="danger" onClick={logout}>
                     Log Out
                   </DropdownItem>
                 </DropdownMenu>

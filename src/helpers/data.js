@@ -1,8 +1,4 @@
 import React from "react";
-import { AiFillDashboard } from "react-icons/ai";
-import { FaSchool } from "react-icons/fa";
-import { PiUsersFourFill } from "react-icons/pi";
-import { RiSettings2Fill } from "react-icons/ri";
 
 const columns = [
   { name: "ID", uid: "id", sortable: true },
@@ -36,12 +32,24 @@ const navList = [
   },
   {
     id: 4,
+    title: "Students",
+    path: "/home/schools",
+    icon: <div className="icons8-user-male"></div>,
+  },
+  {
+    id: 5,
+    title: "Payments",
+    path: "/home/schools",
+    icon: <div className="icons8-briefcase"></div>,
+  },
+  {
+    id: 6,
     title: "User Management",
     path: "/home/users",
     icon: <div className="icons8-myspace"></div>,
   },
   {
-    id: 5,
+    id: 7,
     title: "Settings",
     path: "/home/settings",
     icon: <div className="icons8-services"></div>,

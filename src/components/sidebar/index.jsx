@@ -1,6 +1,8 @@
+"use client"
+
 import { navList } from "@/helpers/data";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Logo from "../../../public/equity.svg";
 import { Listbox, ListboxItem } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -9,10 +11,10 @@ const Sidebar = () => {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(2);
 
-  const handleClick = (item) => {
+  const handleClick = useCallback((item) => {
     setSelectedIndex(item.id);
     router.push(item.path);
-  };
+  });
 
   return (
     <div className="h-screen w-80 bg-[#F5F4F5]">
@@ -20,7 +22,7 @@ const Sidebar = () => {
         <Image src={Logo} width={60} height={60} alt="Logo" />
         <div>
           <h2 className="flex justify-content-end text-white pt-3">
-            SchoolPay
+            School Pay
           </h2>
         </div>
       </div>
@@ -34,20 +36,13 @@ const Sidebar = () => {
             key={item.id}
             color={"primary"}
             showDivider={true}
-            textValue=""
+            textValue="list"
+            onPress={() => handleClick(item)}
           >
-            <button
-              key={item.id}
-              onClick={() => handleClick(item)}
-              className={`btn ${
-                selectedIndex === item.id ? "active" : ""
-              } active:bg-violet-700`}
-            >
-              <h3 className="text-md flex gap-3 items-center">
-                <div className="text-sm">{item.icon}</div>
-                {item.title}
-              </h3>
-            </button>
+            <h3 className="text-md flex gap-3 items-center">
+              <div className="text-sm">{item.icon}</div>
+              {item.title}
+            </h3>
           </ListboxItem>
         )}
       </Listbox>

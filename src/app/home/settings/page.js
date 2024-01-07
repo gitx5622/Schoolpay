@@ -1,61 +1,98 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import {
   Card,
-  CardHeader,
-  CardFooter,
   CardBody,
-  Image,
+  CardHeader,
   Button,
+  Avatar,
+  Divider,
 } from "@nextui-org/react";
+import axios from "axios";
 
 const Settings = () => {
+  const [data, setData] = useState("nothing");
+
+  const getUserDetails = async () => {
+    const res = await axios.get("/api/users/me");
+    setData(res.data.data);
+    console.log(res);
+  };
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
   return (
     <div className="flex gap-3 p-3">
       <div className="flex-grow">
-        <Card
-          isFooterBlurred
-          className="w-full h-[400px] col-span-12 sm:col-span-5"
-        >
-          <CardHeader className="absolute z-10 top-1 flex-col items-start">
-            <p className="text-tiny text-white/60 uppercase font-bold">New</p>
-            <h4 className="text-black font-medium text-2xl">Acme camera</h4>
-          </CardHeader>
-          <Image
-            removeWrapper
-            alt="Card example background"
-            className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
-            src="https://nextui.org/images/card-example-6.jpeg"
-          />
-          <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
-            <div>
-              <p className="text-black text-tiny">Available soon.</p>
-              <p className="text-black text-tiny">Get notified.</p>
+        <Card className="max-w-[100%]">
+          <CardBody>
+            <div className="flex justify-center pt-5">
+              <Avatar
+                isBordered
+                color="success"
+                src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
+                className="w-60 h-60 text-large"
+              />
             </div>
-            <Button
-              className="text-tiny"
-              color="primary"
-              radius="full"
-              size="sm"
-            >
-              Notify Me
-            </Button>
-          </CardFooter>
+            <div className="flex justify-center pt-3">
+              <div className="text-center">
+                <p className="text-md">{data.username}</p>
+                <p className="text-small text-default-500">Frontend Engineer</p>
+                <p className="text-small text-success text-default-300">
+                  Online
+                </p>
+                <div className="flex space-x-4 pt-3">
+                  <Button color="primary">Message</Button>
+                  <Divider orientation="vertical" />
+                  <Button color="primary">Follow</Button>
+                </div>
+              </div>
+            </div>
+          </CardBody>
         </Card>
       </div>
       <div className="flex-grow">
         <Card className="py-4">
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-            <p className="text-tiny uppercase font-bold">Daily Mix</p>
-            <small className="text-default-500">12 Tracks</small>
-            <h4 className="font-bold text-large">Frontend Radio</h4>
+            <h4 className="font-bold text-large">My Profile</h4>
           </CardHeader>
           <CardBody className="overflow-visible py-2">
-            <Image
-              alt="Card background"
-              className="object-cover rounded-xl"
-              src="https://nextui.org/images/hero-card.jpeg"
-              width={370}
-            />
+            <table>
+              <tr>
+                <th>#</th>
+                <th>Details</th>
+              </tr>
+              <tr>
+                <td>ID</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>Full Name</td>
+                <td>George Gitau</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>{data.email}</td>
+              </tr>
+              <tr>
+                <td>Description</td>
+                <td>Frontend Engineer</td>
+              </tr>
+              <tr>
+                <td>Date Joined</td>
+                <td>5/2/2023</td>
+              </tr>
+              <tr>
+                <td>Role</td>
+                <td>Admin</td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td>07463000000</td>
+              </tr>
+            </table>
           </CardBody>
         </Card>
       </div>
