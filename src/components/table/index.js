@@ -62,7 +62,7 @@ const TableComponent = ({
     return columns.filter((column) =>
       Array.from(visibleColumns).includes(column._id)
     );
-  }, [visibleColumns]);
+  }, [visibleColumns, columns]);
 
   const sortedItems = React.useMemo(() => {
     return [...items].sort((a, b) => {
@@ -140,32 +140,38 @@ const TableComponent = ({
     if (page < pages) {
       setPage(page + 1);
     }
-  }, [page, pages]);
+  }, [page, pages, setPage]);
 
   const onPreviousPage = React.useCallback(() => {
     if (page > 1) {
       setPage(page - 1);
     }
-  }, [page]);
+  }, [page, setPage]);
 
-  const onRowsPerPageChange = React.useCallback((e) => {
-    setRowsPerPage(Number(e.target.value));
-    setPage(1);
-  }, []);
-
-  const onSearchChange = React.useCallback((value) => {
-    if (value) {
-      setFilterValue(value);
+  const onRowsPerPageChange = React.useCallback(
+    (e) => {
+      setRowsPerPage(Number(e.target.value));
       setPage(1);
-    } else {
-      setFilterValue("");
-    }
-  }, []);
+    },
+    [setPage]
+  );
+
+  const onSearchChange = React.useCallback(
+    (value) => {
+      if (value) {
+        setFilterValue(value);
+        setPage(1);
+      } else {
+        setFilterValue("");
+      }
+    },
+    [setPage, setFilterValue]
+  );
 
   const onClear = React.useCallback(() => {
     setFilterValue("");
     setPage(1);
-  }, []);
+  }, [setPage, setFilterValue]);
 
   const topContent = React.useMemo(() => {
     return (
@@ -257,6 +263,12 @@ const TableComponent = ({
     users.length,
     onSearchChange,
     hasSearchFilter,
+    columns,
+    onClear,
+    searchPlaceholder,
+    setStatusFilter,
+    setVisibleColumns,
+    statusOptions,
   ]);
 
   const bottomContent = React.useMemo(() => {
@@ -296,7 +308,17 @@ const TableComponent = ({
         </div>
       </div>
     );
-  }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
+  }, [
+    selectedKeys,
+    items.length,
+    page,
+    pages,
+    hasSearchFilter,
+    filteredItems.length,
+    onNextPage,
+    onPreviousPage,
+    setPage,
+  ]);
 
   return (
     <div className="w-[100%]">

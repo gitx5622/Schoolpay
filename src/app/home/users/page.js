@@ -38,7 +38,7 @@ const Users = () => {
     }
 
     return filteredUsers;
-  }, [data, filterValue, statusFilter]);
+  }, [data, filterValue, statusFilter, hasSearchFilter]);
 
   const pages = Math.ceil(filteredItems.length / rowsPerPage);
 

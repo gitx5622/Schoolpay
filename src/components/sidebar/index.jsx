@@ -14,7 +14,7 @@ const Sidebar = () => {
   const handleClick = useCallback((item) => {
     setSelectedIndex(item.id);
     router.push(item.path);
-  });
+  },[router]);
 
   return (
     <div className="h-screen w-80 bg-[#F5F4F5]">

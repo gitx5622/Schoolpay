@@ -30,7 +30,7 @@ const Header = () => {
     } catch (error) {
       console.log(error.message);
     }
-  }, []);
+  }, [router]);
 
   const getUserDetails = async () => {
     const res = await axios.get("/api/users/me");
