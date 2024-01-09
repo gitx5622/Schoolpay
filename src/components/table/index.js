@@ -45,7 +45,7 @@ const TableComponent = ({
   setRowsPerPage,
   filterValue,
   statusFilter,
-  hasSearchFilter,
+  loading,
   filteredItems,
   emptyContent,
   searchPlaceholder,
@@ -348,7 +348,7 @@ const TableComponent = ({
                 </TableColumn>
               )}
             </TableHeader>
-            <TableBody emptyContent={emptyContent} items={sortedItems}>
+            <TableBody emptyContent={emptyContent} items={sortedItems} isLoading={loading}>
               {(item) => (
                 <TableRow key={item._id}>
                   {(columnKey) => (
