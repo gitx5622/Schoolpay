@@ -1,8 +1,6 @@
 import { connect } from "@/utils";
-import User from "@/lib/models";
+import School from "@/lib/schoolModel";
 import { NextResponse } from "next/server";
-import bcryptjs from "bcryptjs";
-import { sendEmail } from "@/helpers/mailer";
 
 connect();
 // Calls the connect function to establish a connection to the database.
@@ -11,40 +9,50 @@ export async function POST(request) {
   // Defines an asynchronous POST request handler.
   try {
     const reqBody = await request.json();
-    const { username, email, password } = reqBody;
+    const { name, account_no, location, email } = reqBody;
     // Parses the request body to extract username, email, and password.
 
     //Checks if a user with the provided email already exists.
-    const user = await User.findOne({ email });
+    const school = await School.findOne({ email });
 
     //If yes, returns a 400 response.
-    if (user) {
+    if (school) {
       return NextResponse.json(
         { error: "User already exists" },
         { status: 400 }
       );
     }
 
-    //hash password using bcryptjs.
-    const salt = await bcryptjs.genSalt(10);
-    const hashedPassword = await bcryptjs.hash(password, salt);
-
-    const newUser = new User({
-      username,
+    const newSchool = new School({
+      name,
+      account_no,
+      location,
       email,
-      password: hashedPassword,
     });
 
     // Saves the new user to the database.
-    const savedUser = await newUser.save();
+    const savedSchhol = await newSchool.save();
 
-    await sendEmail({ email, emailType: "VERIFY", userId: savedUser._id });
     return NextResponse.json({
       message: "User created successfully",
       success: true,
-      savedUser,
+      savedSchhol,
     });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
+export async function GET(request) {
+    try {
+      // Find the user in the database based on the user ID
+      const schools = await School.find();
+      return NextResponse.json({
+        message: "Schools found",
+        data: schools,
+      });
+    } catch (error) {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+  }
+  

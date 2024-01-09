@@ -9,29 +9,40 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
-export default function ModalComponent() {
+export default function ModalComponent({
+  title,
+  modalBody,
+  onSumbit,
+  loading,
+}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [backdrop, setBackdrop] = React.useState("opaque");
+  const [backdrop, setBackdrop] = React.useState("blur");
 
-  const backdrops = ["opaque", "blur", "transparent"];
+  const backdrops = ["blur"];
 
   const handleOpen = (backdrop) => {
     setBackdrop(backdrop);
     onOpen();
   };
 
+  const handleOnSubmit = () => {
+    onSumbit();
+    onClose();
+  };
+
   return (
     <>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3 justify-end pr-4 pt-4">
         {backdrops.map((b) => (
           <Button
             key={b}
             variant="flat"
-            color="warning"
+            color="primary"
             onPress={() => handleOpen(b)}
             className="capitalize"
+            isLoading={loading}
           >
-            {b}
+            Create
           </Button>
         ))}
       </div>
@@ -39,35 +50,14 @@ export default function ModalComponent() {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
-                Modal Title
-              </ModalHeader>
-              <ModalBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat
-                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-                  aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem
-                  eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
-              </ModalBody>
+              <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
+              <ModalBody>{modalBody}</ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
+                <Button color="primary" onPress={handleOnSubmit}>
+                  Submit
                 </Button>
               </ModalFooter>
             </>

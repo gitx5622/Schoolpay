@@ -85,6 +85,7 @@ function Login() {
             <div className="pt-5 pb-3">
               <h3 className="pb-3">Enter Password</h3>
               <Input
+                type="password"
                 name="password"
                 placeholder="Enter Password"
                 variant="bordered"
@@ -95,11 +96,11 @@ function Login() {
             <div className="text-[#C1400A] pt-3">
               <a href="/forgot">Forgot your password?</a>
             </div>
-            <div className="flex gap-5 flex-col pt-8">
+            <div className="flex gap-5 flex-col pt-4">
               <Button
                 color="danger"
                 fullWidth={true}
-                className="bg-[#871914] text-white mb-6"
+                className="bg-[#871914] text-white"
                 isLoading={loading}
                 onClick={onLogin}
               >
@@ -108,7 +109,6 @@ function Login() {
               <Button
                 color="danger"
                 fullWidth={true}
-                isLoading={loading}
                 className="bg-[#871914] text-white"
                 onClick={() => router.push("/auth/signup")}
               >

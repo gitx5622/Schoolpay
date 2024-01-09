@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -23,14 +23,14 @@ const Header = () => {
   const pathname = usePathname();
   const [data, setData] = useState("nothing");
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     try {
       await axios.get("/api/users/logout");
       router.push("/auth/login");
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }, []);
 
   const getUserDetails = async () => {
     const res = await axios.get("/api/users/me");

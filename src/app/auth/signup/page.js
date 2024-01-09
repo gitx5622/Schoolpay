@@ -24,9 +24,8 @@ function Signup() {
     try {
       setLoading(true);
       const response = await axios.post("/api/users/signup", registerUser);
-      console.log(response)
       setLoading(false);
-      router.push("/auth/login");
+      router.push("/auth/verifyemail");
     } catch (error) {
       console.log("Signup failed", error.message);
     }
@@ -61,10 +60,10 @@ function Signup() {
             </Button>
           </div>
           <h2 className="font-bold text-center">Or</h2>
-          <h2 className="font-bold text-xl pt-3 pb-2">
+          <h2 className="font-bold text-xl pt-2">
             Sign Up with Email and Password
           </h2>
-          <div className="pt-9">
+          <div className="pt-3">
             <h3 className="pb-3">Username</h3>
             <div className="md:flex-nowrap gap-4">
               <Input
@@ -101,11 +100,11 @@ function Signup() {
             <div className="text-[#C1400A] pt-3">
               <a href="/forgot">Forgot your password?</a>
             </div>
-            <div className="flex gap-5 flex-col pt-8">
+            <div className="flex gap-5 flex-col pt-4">
               <Button
                 color="danger"
                 fullWidth={true}
-                className="bg-[#871914] text-white mb-6"
+                className="bg-[#871914] text-white"
                 onPress={onSignup}
                 isLoading={loading}
               >

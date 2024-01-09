@@ -21,11 +21,8 @@ import {
 import { VerticalDotsIcon } from "../../components/icons/VerticalDotsIcon";
 import { SearchIcon } from "../../components/icons/SearchIcon";
 import { ChevronDownIcon } from "../../components/icons/ChevronDownIcon";
-import { columns, users, statusOptions } from "../../helpers/data";
 import { capitalize } from "../../utils";
 import ModalComponent from "../../components/modal";
-
-const variants = ["flat", "bordered", "underlined", "faded"];
 
 const statusColorMap = {
   active: "success",
@@ -33,60 +30,39 @@ const statusColorMap = {
   vacation: "warning",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
-
-const TableComponent = () => {
-  const [filterValue, setFilterValue] = React.useState("");
+const TableComponent = ({
+  users,
+  statusOptions,
+  columns,
+  visibleColumns,
+  setVisibleColumns,
+  pages,
+  page,
+  items,
+  setPage,
+  setFilterValue,
+  setStatusFilter,
+  setRowsPerPage,
+  filterValue,
+  statusFilter,
+  hasSearchFilter,
+  filteredItems,
+  emptyContent,
+  searchPlaceholder,
+}) => {
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
-  const [visibleColumns, setVisibleColumns] = React.useState(
-    new Set(INITIAL_VISIBLE_COLUMNS)
-  );
-  const [statusFilter, setStatusFilter] = React.useState("all");
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [sortDescriptor, setSortDescriptor] = React.useState({
     column: "age",
     direction: "ascending",
   });
-  const [page, setPage] = React.useState(1);
-
-  const hasSearchFilter = Boolean(filterValue);
 
   const headerColumns = React.useMemo(() => {
     if (visibleColumns === "all") return columns;
 
     return columns.filter((column) =>
-      Array.from(visibleColumns).includes(column.uid)
+      Array.from(visibleColumns).includes(column._id)
     );
   }, [visibleColumns]);
-
-  const filteredItems = React.useMemo(() => {
-    let filteredUsers = [...users];
-
-    if (hasSearchFilter) {
-      filteredUsers = filteredUsers.filter((user) =>
-        user.name.toLowerCase().includes(filterValue.toLowerCase())
-      );
-    }
-    if (
-      statusFilter !== "all" &&
-      Array.from(statusFilter).length !== statusOptions.length
-    ) {
-      filteredUsers = filteredUsers.filter((user) =>
-        Array.from(statusFilter).includes(user.status)
-      );
-    }
-
-    return filteredUsers;
-  }, [users, filterValue, statusFilter]);
-
-  const pages = Math.ceil(filteredItems.length / rowsPerPage);
-
-  const items = React.useMemo(() => {
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-
-    return filteredItems.slice(start, end);
-  }, [page, filteredItems, rowsPerPage]);
 
   const sortedItems = React.useMemo(() => {
     return [...items].sort((a, b) => {
@@ -112,12 +88,12 @@ const TableComponent = () => {
             {user.email}
           </User>
         );
-      case "role":
+      case "account_no":
         return (
           <div className="flex flex-col">
             <p className="text-bold text-small capitalize">{cellValue}</p>
             <p className="text-bold text-tiny capitalize text-default-400">
-              {user.team}
+              {user.account_no}
             </p>
           </div>
         );
@@ -198,7 +174,7 @@ const TableComponent = () => {
           <Input
             isClearable
             className="w-full sm:max-w-[44%]"
-            placeholder="Search by name..."
+            placeholder={searchPlaceholder}
             startContent={<SearchIcon />}
             value={filterValue}
             onClear={() => onClear()}
@@ -223,7 +199,7 @@ const TableComponent = () => {
                 onSelectionChange={setStatusFilter}
               >
                 {statusOptions.map((status) => (
-                  <DropdownItem key={status.uid} className="capitalize">
+                  <DropdownItem key={status._id} className="capitalize">
                     {capitalize(status.name)}
                   </DropdownItem>
                 ))}
@@ -247,13 +223,12 @@ const TableComponent = () => {
                 onSelectionChange={setVisibleColumns}
               >
                 {columns.map((column) => (
-                  <DropdownItem key={column.uid} className="capitalize">
+                  <DropdownItem key={column._id} className="capitalize">
                     {capitalize(column.name)}
                   </DropdownItem>
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <ModalComponent />
           </div>
         </div>
         <div className="flex justify-between items-center">
@@ -346,17 +321,17 @@ const TableComponent = () => {
             <TableHeader columns={headerColumns}>
               {(column) => (
                 <TableColumn
-                  key={column.uid}
-                  align={column.uid === "actions" ? "center" : "start"}
+                  key={column._id}
+                  align={column._id === "actions" ? "center" : "start"}
                   allowsSorting={column.sortable}
                 >
                   {column.name}
                 </TableColumn>
               )}
             </TableHeader>
-            <TableBody emptyContent={"No users found"} items={sortedItems}>
+            <TableBody emptyContent={emptyContent} items={sortedItems}>
               {(item) => (
-                <TableRow key={item.id}>
+                <TableRow key={item._id}>
                   {(columnKey) => (
                     <TableCell>{renderCell(item, columnKey)}</TableCell>
                   )}
