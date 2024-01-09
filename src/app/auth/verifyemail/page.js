@@ -2,9 +2,10 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { AppRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export default function VerifyEmailPage() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export default function VerifyEmailPage() {
   const [verified, setVerified] = useState(false);
   const [error, setError] = useState(false);
 
-  const verifyUserEmail = async () => {
+  const verifyUserEmail = useCallback(async () => {
     try {
       await axios.post("/api/users/verifyemail", { token });
       setVerified(true);
@@ -21,7 +22,8 @@ export default function VerifyEmailPage() {
       setError(true);
       console.log(error.response.data);
     }
-  };
+  }, [router, token]);
+    
   useEffect(() => {
     const urlToken = window.location.search.split("=")[1];
     setToken(urlToken || "");
@@ -31,7 +33,7 @@ export default function VerifyEmailPage() {
     if (token.length > 0) {
       verifyUserEmail();
     }
-  }, [token, verifyUserEmail]);
+  }, [token]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
