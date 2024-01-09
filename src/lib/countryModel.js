@@ -1,5 +1,3 @@
-// src/models/userModel.js
-
 import mongoose from "mongoose";
 
 const countrySchema = new mongoose.Schema(

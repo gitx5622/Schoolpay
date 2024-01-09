@@ -153,7 +153,7 @@ const TableComponent = ({
       setRowsPerPage(Number(e.target.value));
       setPage(1);
     },
-    [setPage]
+    [setPage, setRowsPerPage]
   );
 
   const onSearchChange = React.useCallback(
@@ -262,7 +262,6 @@ const TableComponent = ({
     onRowsPerPageChange,
     users.length,
     onSearchChange,
-    hasSearchFilter,
     columns,
     onClear,
     searchPlaceholder,
@@ -310,14 +309,12 @@ const TableComponent = ({
     );
   }, [
     selectedKeys,
-    items.length,
     page,
     pages,
-    hasSearchFilter,
     filteredItems.length,
     onNextPage,
     onPreviousPage,
-    setPage
+    setPage,
   ]);
 
   return (
