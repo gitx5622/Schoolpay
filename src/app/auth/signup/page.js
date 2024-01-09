@@ -25,7 +25,7 @@ function Signup() {
       setLoading(true);
       const response = await axios.post("/api/users/signup", registerUser);
       setLoading(false);
-      router.push("/auth/verifyemail");
+      router.push("/auth/login");
     } catch (error) {
       console.log("Signup failed", error.message);
     }
