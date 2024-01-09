@@ -1,7 +1,7 @@
 // src/models/userModel.js
 
 import mongoose from "mongoose";
-import Country from "./countryModel";
+// import Country from "./countryModel";
 
 const schoolSchema = new mongoose.Schema(
   {
@@ -23,7 +23,7 @@ const schoolSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide a account number of the school"],
     },
-    country: Country,
+    // country: Country,
   },
   { timestamps: true }
 );
