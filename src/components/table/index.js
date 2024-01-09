@@ -314,7 +314,7 @@ const TableComponent = ({
     filteredItems.length,
     onNextPage,
     onPreviousPage,
-    setPage,
+    setPage
   ]);
 
   return (
