@@ -48,14 +48,15 @@ export default function ModalComponent({
           </Button>
         )}
         {!isButton && (
-          <Chip
-            className="d-flex justify-start p-0"
-            onPress={() => handleOpen("blur")}
-            size="sm"
+          <Button
             variant="light"
+            color="primary"
+            size="sm"
+            onPress={() => handleOpen("blur")}
+            className="capitalize"
           >
             {action}
-          </Chip>
+          </Button>
         )}
       </div>
       <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
