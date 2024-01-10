@@ -35,22 +35,18 @@ export default function ModalComponent({
   return (
     <>
       <div className="flex flex-wrap gap-3 justify-end pr-4 pt-4">
-        {isButton ? (
-          backdrops.map((b) => (
-            <Button
-              key={b}
-              variant="flat"
-              color="primary"
-              onPress={() => handleOpen(b)}
-              className="capitalize"
-              isLoading={loading}
-            >
-              {action}
-            </Button>
-          ))
-        ) : (
-          <div onClick={handleOpen("blur")}>{action}</div>
+        {isButton && (
+          <Button
+            variant="flat"
+            color="primary"
+            onPress={() => handleOpen("blur")}
+            className="capitalize"
+            isLoading={loading}
+          >
+            {action}
+          </Button>
         )}
+        {!isButton && <div>{action}</div>}
       </div>
       <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
         <ModalContent>
