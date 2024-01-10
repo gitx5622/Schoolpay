@@ -7,7 +7,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  DropdownItem
+  DropdownItem,
 } from "@nextui-org/react";
 
 export default function ModalComponent({
@@ -47,7 +47,7 @@ export default function ModalComponent({
             {action}
           </Button>
         )}
-        {!isButton && <DropdownItem>{action}</DropdownItem>}
+        {!isButton && action}
       </div>
       <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
         <ModalContent>

@@ -56,7 +56,6 @@ const TableComponent = ({
     direction: "ascending",
   });
 
-
   const headerColumns = React.useMemo(() => {
     if (visibleColumns === "all") return columns;
 
@@ -127,22 +126,22 @@ const TableComponent = ({
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                  <ModalComponent
-                    title="School Details"
-                    action="View"
-                    isButton={false}
-                    // onSumbit={}
-                    modalBody={
-                      <>
-                        <div className="pt-2">
-                          <h3 className="pb-3">Name of the School</h3>
-                          <h3 className="pb-3">Name of the School</h3>
-                          <h3 className="pb-3">Name of the School</h3>
-                          <h3 className="pb-3">Name of the School</h3>
-                        </div>
-                      </>
-                    }
-                  />
+                <ModalComponent
+                  title="School Details"
+                  action={<DropdownItem>View</DropdownItem>}
+                  isButton={false}
+                  // onSumbit={}
+                  modalBody={
+                    <>
+                      <div className="pt-2">
+                        <h3 className="pb-3">Name of the School</h3>
+                        <h3 className="pb-3">Name of the School</h3>
+                        <h3 className="pb-3">Name of the School</h3>
+                        <h3 className="pb-3">Name of the School</h3>
+                      </div>
+                    </>
+                  }
+                />
                 <DropdownItem>Edit</DropdownItem>
                 <DropdownItem>Delete</DropdownItem>
               </DropdownMenu>
