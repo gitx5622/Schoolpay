@@ -46,7 +46,14 @@ export default function ModalComponent({
             {action}
           </Button>
         )}
-        {!isButton && <div>{action}</div>}
+        {!isButton && (
+          <div
+            className="d-flex justify-end p-0"
+            onClick={() => handleOpen("blur")}
+          >
+            {action}
+          </div>
+        )}
       </div>
       <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
         <ModalContent>
