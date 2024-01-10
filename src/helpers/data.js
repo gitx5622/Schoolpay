@@ -2,8 +2,8 @@ import React from "react";
 
 const userColumns = [
   { name: "ID", _id: "_id", sortable: true },
-  { name: "EMAIL", _id: "email", sortable: true },
   { name: "USERNAME", _id: "username", sortable: true },
+  { name: "EMAIL", _id: "email", sortable: true },
   { name: "IS ADMIN", _id: "isAdmin", sortable: true },
   { name: "IS VERIFIED", _id: "isVerified", sortable: true },
   { name: "CREATED AT", _id: "createdAt", sortable: true },

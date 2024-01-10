@@ -88,6 +88,14 @@ const TableComponent = ({
             {user.email}
           </User>
         );
+      case "username":
+        <User
+          avatarProps={{ radius: "lg", src: user.avatar }}
+          description={user.username}
+          name={cellValue}
+        >
+          {user.username}
+        </User>;
       case "account_no":
         return (
           <div className="flex flex-col">
