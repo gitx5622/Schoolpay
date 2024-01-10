@@ -24,7 +24,6 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Button,
   useDisclosure,
 } from "@nextui-org/react";
 import { VerticalDotsIcon } from "../../components/icons/VerticalDotsIcon";
