@@ -7,7 +7,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Chip,
+  DropdownItem
 } from "@nextui-org/react";
 
 export default function ModalComponent({
@@ -47,17 +47,7 @@ export default function ModalComponent({
             {action}
           </Button>
         )}
-        {!isButton && (
-          <Button
-            variant="light"
-            color="primary"
-            size="sm"
-            onPress={() => handleOpen("blur")}
-            className="capitalize"
-          >
-            {action}
-          </Button>
-        )}
+        {!isButton && <DropdownItem>{action}</DropdownItem>}
       </div>
       <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
         <ModalContent>

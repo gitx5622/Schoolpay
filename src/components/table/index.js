@@ -56,6 +56,7 @@ const TableComponent = ({
     direction: "ascending",
   });
 
+
   const headerColumns = React.useMemo(() => {
     if (visibleColumns === "all") return columns;
 
@@ -126,7 +127,6 @@ const TableComponent = ({
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem>
                   <ModalComponent
                     title="School Details"
                     action="View"
@@ -143,7 +143,6 @@ const TableComponent = ({
                       </>
                     }
                   />
-                </DropdownItem>
                 <DropdownItem>Edit</DropdownItem>
                 <DropdownItem>Delete</DropdownItem>
               </DropdownMenu>
