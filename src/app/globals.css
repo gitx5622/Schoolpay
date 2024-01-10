@@ -22,27 +22,6 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-table {
-  font-family: arial, sans-serif;
-  width: 100%;
-}
-
-table,
-td,
-th {
-  border-collapse: collapse;
-}
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-th {
-  color: #871914;
-}
-
 .icons8-microsoft-paint {
   display: inline-block;
   width: 48px;
