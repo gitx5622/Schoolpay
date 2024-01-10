@@ -7,6 +7,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
+  Chip,
 } from "@nextui-org/react";
 
 export default function ModalComponent({
@@ -20,7 +21,7 @@ export default function ModalComponent({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [backdrop, setBackdrop] = React.useState("blur");
 
-  const backdrops = ["blur"];
+  // const backdrops = ["blur"];
 
   const handleOpen = (backdrop) => {
     setBackdrop(backdrop);
@@ -47,12 +48,14 @@ export default function ModalComponent({
           </Button>
         )}
         {!isButton && (
-          <div
-            className="d-flex justify-end p-0"
+          <Chip
+            className="d-flex justify-start p-0"
             onClick={() => handleOpen("blur")}
+            size="sm"
+            variant="light"
           >
             {action}
-          </div>
+          </Chip>
         )}
       </div>
       <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
