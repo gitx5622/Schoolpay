@@ -14,6 +14,7 @@ export default function ModalComponent({
   modalBody,
   onSumbit,
   loading,
+  action,
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [backdrop, setBackdrop] = React.useState("blur");
@@ -42,7 +43,7 @@ export default function ModalComponent({
             className="capitalize"
             isLoading={loading}
           >
-            Create
+            {action}
           </Button>
         ))}
       </div>

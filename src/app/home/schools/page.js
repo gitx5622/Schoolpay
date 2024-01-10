@@ -101,6 +101,7 @@ const Schools = () => {
     <div>
       <ModalComponent
         title="Add School"
+        action="Create"
         onSumbit={createSchool}
         modalBody={
           <>

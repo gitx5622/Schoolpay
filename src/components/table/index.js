@@ -126,25 +126,22 @@ const TableComponent = ({
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem
-                  onPress={() => (
-                    <ModalComponent
-                      title="Add School"
-                      onSumbit={createSchool}
-                      modalBody={
-                        <>
-                          <div className="pt-2">
-                            <h3 className="pb-3">Name of the School</h3>
-                            <h3 className="pb-3">Name of the School</h3>
-                            <h3 className="pb-3">Name of the School</h3>
-                            <h3 className="pb-3">Name of the School</h3>
-                          </div>
-                        </>
-                      }
-                    />
-                  )}
-                >
-                  View
+                <DropdownItem>
+                  <ModalComponent
+                    title="School Details"
+                    action="View"
+                    // onSumbit={}
+                    modalBody={
+                      <>
+                        <div className="pt-2">
+                          <h3 className="pb-3">Name of the School</h3>
+                          <h3 className="pb-3">Name of the School</h3>
+                          <h3 className="pb-3">Name of the School</h3>
+                          <h3 className="pb-3">Name of the School</h3>
+                        </div>
+                      </>
+                    }
+                  />
                 </DropdownItem>
                 <DropdownItem>Edit</DropdownItem>
                 <DropdownItem>Delete</DropdownItem>
