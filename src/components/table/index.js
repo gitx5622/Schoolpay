@@ -130,6 +130,7 @@ const TableComponent = ({
                   <ModalComponent
                     title="School Details"
                     action="View"
+                    isButton={false}
                     // onSumbit={}
                     modalBody={
                       <>

@@ -102,6 +102,7 @@ const Schools = () => {
       <ModalComponent
         title="Add School"
         action="Create"
+        isButton={true}
         onSumbit={createSchool}
         modalBody={
           <>

@@ -15,6 +15,7 @@ export default function ModalComponent({
   onSumbit,
   loading,
   action,
+  isButton,
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [backdrop, setBackdrop] = React.useState("blur");
@@ -34,18 +35,22 @@ export default function ModalComponent({
   return (
     <>
       <div className="flex flex-wrap gap-3 justify-end pr-4 pt-4">
-        {backdrops.map((b) => (
-          <Button
-            key={b}
-            variant="flat"
-            color="primary"
-            onPress={() => handleOpen(b)}
-            className="capitalize"
-            isLoading={loading}
-          >
-            {action}
-          </Button>
-        ))}
+        {isButton ? (
+          backdrops.map((b) => (
+            <Button
+              key={b}
+              variant="flat"
+              color="primary"
+              onPress={() => handleOpen(b)}
+              className="capitalize"
+              isLoading={loading}
+            >
+              {action}
+            </Button>
+          ))
+        ) : (
+          <div onClick={handleOpen("blur")}>{action}</div>
+        )}
       </div>
       <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
         <ModalContent>
