@@ -119,9 +119,22 @@ const TableComponent = ({
               </DropdownTrigger>
               <DropdownMenu>
                 <DropdownItem
-                  onClick={() => {
-                    return <ModalComponent />;
-                  }}
+                  onClick={() => (
+                    <ModalComponent
+                      title="Add School"
+                      onSumbit={createSchool}
+                      modalBody={
+                        <>
+                          <div className="pt-2">
+                            <h3 className="pb-3">Name of the School</h3>
+                            <h3 className="pb-3">Name of the School</h3>
+                            <h3 className="pb-3">Name of the School</h3>
+                            <h3 className="pb-3">Name of the School</h3>
+                          </div>
+                        </>
+                      }
+                    />
+                  )}
                 >
                   View
                 </DropdownItem>
@@ -314,7 +327,7 @@ const TableComponent = ({
     filteredItems.length,
     onNextPage,
     onPreviousPage,
-    setPage
+    setPage,
   ]);
 
   return (
@@ -348,7 +361,11 @@ const TableComponent = ({
                 </TableColumn>
               )}
             </TableHeader>
-            <TableBody emptyContent={emptyContent} items={sortedItems} isLoading={loading}>
+            <TableBody
+              emptyContent={emptyContent}
+              items={sortedItems}
+              isLoading={loading}
+            >
               {(item) => (
                 <TableRow key={item._id}>
                   {(columnKey) => (

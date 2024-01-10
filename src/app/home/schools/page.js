@@ -93,9 +93,9 @@ const Schools = () => {
     }
   };
 
-  useEffect(() => {
-    getSchools();
-  }, []);
+  // useEffect(() => {
+  //   getSchools();
+  // }, []);
 
   return (
     <div>
