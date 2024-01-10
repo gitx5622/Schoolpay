@@ -25,7 +25,7 @@ const Users = () => {
 
     if (hasSearchFilter) {
       filteredUsers = filteredUsers.filter((user) =>
-        user?.name.toLowerCase().includes(filterValue.toLowerCase())
+        user?.username.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
     if (
