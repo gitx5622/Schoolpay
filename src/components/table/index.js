@@ -127,7 +127,7 @@ const TableComponent = ({
               </DropdownTrigger>
               <DropdownMenu>
                 <DropdownItem
-                  onClick={() => (
+                  onPress={() => (
                     <ModalComponent
                       title="Add School"
                       onSumbit={createSchool}
