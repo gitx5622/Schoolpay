@@ -47,7 +47,6 @@ export default function ModalComponent({
             {action}
           </Button>
         )}
-        {!isButton && action}
       </div>
       <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
         <ModalContent>
