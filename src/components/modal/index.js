@@ -50,7 +50,7 @@ export default function ModalComponent({
         {!isButton && (
           <Chip
             className="d-flex justify-start p-0"
-            onClick={() => handleOpen("blur")}
+            onPress={() => handleOpen("blur")}
             size="sm"
             variant="light"
           >
