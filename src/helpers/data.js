@@ -6,6 +6,8 @@ const userColumns = [
   { name: "USERNAME", _id: "username", sortable: true },
   { name: "IS ADMIN", _id: "isAdmin", sortable: true },
   { name: "IS VERIFIED", _id: "isVerified", sortable: true },
+  { name: "CREATED AT", _id: "createdAt", sortable: true },
+  { name: "UPDATED AT", _id: "updatedAt", sortable: true },
   { name: "ACTIONS", _id: "actions" },
 ];
 
@@ -15,6 +17,8 @@ const schoolcolumns = [
   { name: "ACCOUNT NO", _id: "account_no", sortable: true },
   { name: "LOCATION", _id: "location", sortable: true },
   { name: "EMAIL", _id: "email" },
+  { name: "CREATED AT", _id: "createdAt", sortable: true },
+  { name: "UPDATED AT", _id: "updatedAt", sortable: true },
   { name: "ACTIONS", _id: "actions" },
 ];
 

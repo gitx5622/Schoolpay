@@ -12,6 +12,7 @@ const INITIAL_VISIBLE_COLUMNS = [
   "account_no",
   "email",
   "location",
+  "createdAt",
   "actions",
 ];
 

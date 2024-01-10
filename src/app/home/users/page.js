@@ -5,7 +5,7 @@ import TableComponent from "@/components/table";
 import { statusOptions, userColumns } from "@/helpers/data";
 import axios from "axios";
 
-const INITIAL_VISIBLE_COLUMNS = ["email", "username", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["email", "username", "createdAt", "actions"];
 
 const Users = () => {
   const [loading, setLoading] = useState(false);
