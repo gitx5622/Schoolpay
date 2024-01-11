@@ -105,6 +105,15 @@ const TableComponent = ({
             </p>
           </div>
         );
+      case "createdAt":
+      case "updatedAt":
+        const dateObject = new Date(cellValue);
+        const formattedDate = dateObject.toLocaleString();
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-small capitalize">{formattedDate}</p>
+          </div>
+        );
       case "status":
         return (
           <Chip
