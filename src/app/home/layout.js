@@ -8,9 +8,9 @@ export default function Layout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex h-screen overflow-hidden h-[100%]">
+        <div className="flex h-screen overflow-hidden">
           <Sidebar />
-          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+          <div className="flex flex-1 flex-col overflow-x-hidden">
             <Header />
             <div>
               <div className="mx-auto max-w-screen-2xl">{children}</div>
