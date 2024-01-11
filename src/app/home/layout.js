@@ -10,11 +10,11 @@ export default function Layout({ children }) {
       <body className={inter.className}>
         <div className="flex h-screen overflow-hidden">
           <Sidebar />
-          <div className="flex flex-1 flex-col overflow-x-hidden">
+          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
             <Header />
-            <div>
+            <main>
               <div className="mx-auto max-w-screen-2xl">{children}</div>
-            </div>
+            </main>
           </div>
         </div>
       </body>
