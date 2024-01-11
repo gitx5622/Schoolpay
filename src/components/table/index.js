@@ -29,6 +29,7 @@ import { SearchIcon } from "../../components/icons/SearchIcon";
 import { ChevronDownIcon } from "../../components/icons/ChevronDownIcon";
 import { capitalize } from "../../utils";
 import ModalComponent from "../../components/modal";
+import { useRouter } from "next/navigation";
 
 const statusColorMap = {
   active: "success",
@@ -61,7 +62,7 @@ const TableComponent = ({
     column: "age",
     direction: "ascending",
   });
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const router = useRouter();
 
   const headerColumns = React.useMemo(() => {
     if (visibleColumns === "all") return columns;
@@ -142,31 +143,15 @@ const TableComponent = ({
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem onClick={() => onOpen()}>View</DropdownItem>
+                <DropdownItem
+                  onClick={() => router.push(`/home/schools/${user._id}`)}
+                >
+                  View
+                </DropdownItem>
                 <DropdownItem>Edit</DropdownItem>
                 <DropdownItem>Delete</DropdownItem>
               </DropdownMenu>
             </Dropdown>
-            <Modal isOpen={isOpen} onClose={onClose}>
-              <ModalContent>
-                {(onClose) => (
-                  <>
-                    <ModalHeader className="flex flex-col gap-1">
-                      {title}
-                    </ModalHeader>
-                    <ModalBody>{modalBody}</ModalBody>
-                    <ModalFooter>
-                      <Button color="danger" variant="light" onPress={onClose}>
-                        Close
-                      </Button>
-                      <Button color="primary" onPress={handleOnSubmit}>
-                        Submit
-                      </Button>
-                    </ModalFooter>
-                  </>
-                )}
-              </ModalContent>
-            </Modal>
           </div>
         );
       default:
