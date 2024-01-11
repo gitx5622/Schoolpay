@@ -17,6 +17,12 @@ import {
   Chip,
   User,
   Pagination,
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
 } from "@nextui-org/react";
 import { VerticalDotsIcon } from "../../components/icons/VerticalDotsIcon";
 import { SearchIcon } from "../../components/icons/SearchIcon";
@@ -55,6 +61,7 @@ const TableComponent = ({
     column: "age",
     direction: "ascending",
   });
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const headerColumns = React.useMemo(() => {
     if (visibleColumns === "all") return columns;
@@ -135,11 +142,31 @@ const TableComponent = ({
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem>View</DropdownItem>
+                <DropdownItem onClick={() => onOpen()}>View</DropdownItem>
                 <DropdownItem>Edit</DropdownItem>
                 <DropdownItem>Delete</DropdownItem>
               </DropdownMenu>
             </Dropdown>
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalContent>
+                {(onClose) => (
+                  <>
+                    <ModalHeader className="flex flex-col gap-1">
+                      {title}
+                    </ModalHeader>
+                    <ModalBody>{modalBody}</ModalBody>
+                    <ModalFooter>
+                      <Button color="danger" variant="light" onPress={onClose}>
+                        Close
+                      </Button>
+                      <Button color="primary" onPress={handleOnSubmit}>
+                        Submit
+                      </Button>
+                    </ModalFooter>
+                  </>
+                )}
+              </ModalContent>
+            </Modal>
           </div>
         );
       default:

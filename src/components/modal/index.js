@@ -7,7 +7,6 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  DropdownItem,
 } from "@nextui-org/react";
 
 export default function ModalComponent({
