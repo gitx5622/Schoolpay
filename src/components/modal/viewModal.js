@@ -73,12 +73,13 @@ const ViewModalComponent = ({
     async (backdrop) => {
       //   let pagepathname;
       //   const path = getCurrentPathName(pathname);
-      handleOpen(backdrop);
+
       try {
         setLoading(true);
         const response = await axios.put(`${url}/${pageId}`);
         console.log(response);
         setData(response.data.data);
+        handleOpen(backdrop);
       } catch (error) {
         console.log("Login failed", error.message);
       } finally {
