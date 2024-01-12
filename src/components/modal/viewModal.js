@@ -68,7 +68,7 @@ const ViewModalComponent = ({
         setLoading(false);
       }
     },
-    [pageId]
+    [pageId, url, page]
   );
 
   const editComponentId = useCallback(

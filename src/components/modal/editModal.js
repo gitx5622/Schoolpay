@@ -37,13 +37,13 @@ const EditModalComponent = ({ title, modalBody, onSumbit, pageId, url }) => {
 
   const getComponentId = useCallback(
     async (backdrop) => {
-    //   let pagepathname;
-    //   const path = getCurrentPathName(pathname);
-    //   if (pathname === "school") {
-    //     pagepathname === "school";
-    //   } else if (pathname === "user") {
-    //     pagepathname === "user";
-    //   }
+      //   let pagepathname;
+      //   const path = getCurrentPathName(pathname);
+      //   if (pathname === "school") {
+      //     pagepathname === "school";
+      //   } else if (pathname === "user") {
+      //     pagepathname === "user";
+      //   }
       handleOpen(backdrop);
       try {
         setLoading(true);
@@ -56,7 +56,7 @@ const EditModalComponent = ({ title, modalBody, onSumbit, pageId, url }) => {
         setLoading(false);
       }
     },
-    [pageId]
+    [pageId, url, handleOpen]
   );
 
   return (
@@ -97,6 +97,5 @@ const EditModalComponent = ({ title, modalBody, onSumbit, pageId, url }) => {
     </div>
   );
 };
-
 
 export default EditModalComponent;

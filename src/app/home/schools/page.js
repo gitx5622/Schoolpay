@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import TableComponent from "@/components/table";
 import { statusOptions, users, schoolcolumns } from "@/helpers/data";
-import { Input, User } from "@nextui-org/react";
+import { Input, User, Chip } from "@nextui-org/react";
 import axios from "axios";
 import CreateModalComponent from "@/components/modal/createModal";
 import ViewModalComponent from "@/components/modal/viewModal";
