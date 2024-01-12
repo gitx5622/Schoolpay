@@ -14,28 +14,12 @@ import {
   Dropdown,
   DropdownMenu,
   DropdownItem,
-  Chip,
-  User,
   Pagination,
-  useDisclosure,
-  Modal,
-  ModalContent,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
 } from "@nextui-org/react";
-import { VerticalDotsIcon } from "../../components/icons/VerticalDotsIcon";
 import { SearchIcon } from "../../components/icons/SearchIcon";
 import { ChevronDownIcon } from "../../components/icons/ChevronDownIcon";
 import { capitalize } from "../../utils";
-import ModalComponent from "../../components/modal";
 import { useRouter } from "next/navigation";
-
-const statusColorMap = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
-};
 
 const TableComponent = ({
   users,
@@ -56,6 +40,7 @@ const TableComponent = ({
   filteredItems,
   emptyContent,
   searchPlaceholder,
+  renderCell,
 }) => {
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
   const [sortDescriptor, setSortDescriptor] = React.useState({
@@ -81,83 +66,6 @@ const TableComponent = ({
       return sortDescriptor.direction === "descending" ? -cmp : cmp;
     });
   }, [sortDescriptor, items]);
-
-  const renderCell = React.useCallback((user, columnKey) => {
-    const cellValue = user[columnKey];
-
-    switch (columnKey) {
-      case "name":
-        return (
-          <User
-            avatarProps={{ radius: "lg", src: user.avatar }}
-            description={user.email}
-            name={cellValue}
-          >
-            {user.email}
-          </User>
-        );
-      case "username":
-        <User
-          avatarProps={{ radius: "lg", src: user.avatar }}
-          description={user.username}
-          name={cellValue}
-        >
-          {user.username}
-        </User>;
-      case "account_no":
-        return (
-          <div className="flex flex-col">
-            <p className="text-bold text-small capitalize">{cellValue}</p>
-            <p className="text-bold text-tiny capitalize text-default-400">
-              {user.account_no}
-            </p>
-          </div>
-        );
-      case "createdAt":
-      case "updatedAt":
-        const dateObject = new Date(cellValue);
-        const formattedDate = dateObject.toLocaleString();
-        return (
-          <div className="flex flex-col">
-            <p className="text-bold text-small capitalize">{formattedDate}</p>
-          </div>
-        );
-      case "status":
-        return (
-          <Chip
-            className="capitalize"
-            color={statusColorMap[user.status]}
-            size="sm"
-            variant="flat"
-          >
-            {cellValue}
-          </Chip>
-        );
-      case "actions":
-        return (
-          <div className="relative flex justify-end items-center gap-2">
-            <Dropdown>
-              <DropdownTrigger>
-                <Button isIconOnly size="sm" variant="light">
-                  <VerticalDotsIcon className="text-default-300" />
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu>
-                <DropdownItem
-                  onClick={() => router.push(`/home/schools/${user._id}`)}
-                >
-                  View
-                </DropdownItem>
-                <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-        );
-      default:
-        return cellValue;
-    }
-  }, []);
 
   const onNextPage = React.useCallback(() => {
     if (page < pages) {

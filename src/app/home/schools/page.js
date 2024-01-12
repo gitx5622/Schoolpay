@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import TableComponent from "@/components/table";
 import { statusOptions, users, schoolcolumns } from "@/helpers/data";
-import { Input } from "@nextui-org/react";
+import { Input, User } from "@nextui-org/react";
 import axios from "axios";
-import ModalComponent from "@/components/modal";
+import CreateModalComponent from "@/components/modal/createModal";
+import ViewModalComponent from "@/components/modal/viewModal";
+import { ViewIcon } from "../../../icons/ViewIcon";
+import { getCurrentPathName } from "@/helpers/routing";
 
 const INITIAL_VISIBLE_COLUMNS = [
   "name",
@@ -16,9 +19,16 @@ const INITIAL_VISIBLE_COLUMNS = [
   "actions",
 ];
 
+const statusColorMap = {
+  active: "success",
+  paused: "danger",
+  vacation: "warning",
+};
+
 const Schools = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [schoolData, setSchoolData] = useState({});
   const [visibleColumns, setVisibleColumns] = React.useState(
     new Set(INITIAL_VISIBLE_COLUMNS)
   );
@@ -97,9 +107,77 @@ const Schools = () => {
     getSchools();
   }, []);
 
+  const renderCell = React.useCallback((user, columnKey) => {
+    const cellValue = user[columnKey];
+    switch (columnKey) {
+      case "name":
+        return (
+          <User
+            avatarProps={{ radius: "lg", src: user.avatar }}
+            description={user.email}
+            name={cellValue}
+          >
+            {user.email}
+          </User>
+        );
+      case "username":
+        <User
+          avatarProps={{ radius: "lg", src: user.avatar }}
+          description={user.username}
+          name={cellValue}
+        >
+          {user.username}
+        </User>;
+      case "account_no":
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-small capitalize">{cellValue}</p>
+            <p className="text-bold text-tiny capitalize text-default-400">
+              {user.account_no}
+            </p>
+          </div>
+        );
+      case "createdAt":
+      case "updatedAt":
+        const dateObject = new Date(cellValue);
+        const formattedDate = dateObject.toLocaleString();
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-small capitalize">{formattedDate}</p>
+          </div>
+        );
+      case "status":
+        return (
+          <Chip
+            className="capitalize"
+            color={statusColorMap[user.status]}
+            size="sm"
+            variant="flat"
+          >
+            {cellValue}
+          </Chip>
+        );
+      case "actions":
+        return (
+          <div className="relative flex justify-end items-center gap-2">
+            <ViewModalComponent
+              title="School Details"
+              page="school"
+              pageId={user._id}
+              url={"/api/school"}
+              // onSumbit={onSumbit}
+              // loading={loading}
+            />
+          </div>
+        );
+      default:
+        return cellValue;
+    }
+  }, []);
+
   return (
     <div>
-      <ModalComponent
+      <CreateModalComponent
         title="Add School"
         action="Create"
         isButton={true}
@@ -172,6 +250,7 @@ const Schools = () => {
         filteredItems={filteredItems}
         emptyContent="No schools found"
         searchPlaceholder="Search by name"
+        renderCell={renderCell}
       />
     </div>
   );

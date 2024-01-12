@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import TableComponent from "@/components/table";
 import { statusOptions, userColumns } from "@/helpers/data";
 import axios from "axios";
+import { Chip, User } from "@nextui-org/react";
+import ViewModalComponent from "@/components/modal/viewModal";
 
 const INITIAL_VISIBLE_COLUMNS = ["email", "username", "createdAt", "actions"];
 
@@ -66,6 +68,74 @@ const Users = () => {
     getUsers();
   }, []);
 
+  const renderCell = React.useCallback((user, columnKey) => {
+    const cellValue = user[columnKey];
+
+    switch (columnKey) {
+      case "name":
+        return (
+          <User
+            avatarProps={{ radius: "lg", src: user.avatar }}
+            description={user.email}
+            name={cellValue}
+          >
+            {user.email}
+          </User>
+        );
+      case "username":
+        <User
+          avatarProps={{ radius: "lg", src: user.avatar }}
+          description={user.username}
+          name={cellValue}
+        >
+          {user.username}
+        </User>;
+      case "account_no":
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-small capitalize">{cellValue}</p>
+            <p className="text-bold text-tiny capitalize text-default-400">
+              {user.account_no}
+            </p>
+          </div>
+        );
+      case "createdAt":
+      case "updatedAt":
+        const dateObject = new Date(cellValue);
+        const formattedDate = dateObject.toLocaleString();
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-small capitalize">{formattedDate}</p>
+          </div>
+        );
+      case "status":
+        return (
+          <Chip
+            className="capitalize"
+            color={statusColorMap[user.status]}
+            size="sm"
+            variant="flat"
+          >
+            {cellValue}
+          </Chip>
+        );
+      case "actions":
+        return (
+          <div className="flex justify-center items-center gap-4">
+            <ViewModalComponent
+              title="User Details"
+              page="user"
+              url={"/api/users/me"}
+              // onSumbit={onSumbit}
+              // loading={loading}
+            />
+          </div>
+        );
+      default:
+        return cellValue;
+    }
+  }, []);
+
   return (
     <div>
       <TableComponent
@@ -87,6 +157,7 @@ const Users = () => {
         filteredItems={filteredItems}
         emptyContent="No users found"
         searchPlaceholder="Search by username"
+        renderCell={renderCell}
       />
     </div>
   );

@@ -9,18 +9,15 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
-export default function ModalComponent({
+export default function CreateModalComponent({
   title,
   modalBody,
   onSumbit,
   loading,
   action,
-  isButton,
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [backdrop, setBackdrop] = React.useState("blur");
-
-  // const backdrops = ["blur"];
 
   const handleOpen = (backdrop) => {
     setBackdrop(backdrop);
@@ -35,7 +32,6 @@ export default function ModalComponent({
   return (
     <>
       <div className="flex flex-wrap gap-3 justify-end pr-4 pt-4">
-        {isButton && (
           <Button
             variant="flat"
             color="primary"
@@ -45,7 +41,6 @@ export default function ModalComponent({
           >
             {action}
           </Button>
-        )}
       </div>
       <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
         <ModalContent>
