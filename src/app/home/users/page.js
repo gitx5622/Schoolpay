@@ -125,7 +125,8 @@ const Users = () => {
             <ViewModalComponent
               title="User Details"
               page="user"
-              url={"/api/users/me"}
+              url={"/api/user"}
+              pageId={user._id}
               // onSumbit={onSumbit}
               // loading={loading}
             />

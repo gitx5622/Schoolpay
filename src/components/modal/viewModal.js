@@ -57,9 +57,7 @@ const ViewModalComponent = ({
       handleOpen(backdrop);
       try {
         setLoading(true);
-        const response = await axios.get(
-          page === "user" ? `${url}` : `${url}/${pageId}`
-        );
+        const response = await axios.get(`${url}/${pageId}`);
         console.log(response);
         setData(response.data.data);
       } catch (error) {
@@ -179,18 +177,12 @@ const ViewModalComponent = ({
             <>
               <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
               <ModalBody>
-                {page === "school"
-                  ? schoolViewModal()
-                  : page === "user"
-                  ? userViewModal()
-                  : null}
+                {url === "/api/school" && schoolViewModal()}
+                {url === "/api/user" && userViewModal()}
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
-                </Button>
-                <Button color="primary" onPress={handleOnSubmit}>
-                  Submit
                 </Button>
               </ModalFooter>
             </>
