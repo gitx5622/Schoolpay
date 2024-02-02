@@ -4,13 +4,15 @@ import Header from "@/components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Layout({ children }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex h-screen overflow-hidden">
-          <Sidebar />
-          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <div className="flex h-screen">
+          <div>
+            <Sidebar />
+          </div>
+          <div className="flex flex-auto max-w-full flex-col overflow-y-auto overflow-x-hidden">
             <Header />
             <main>
               <div className="mx-auto max-w-screen-2xl">{children}</div>
