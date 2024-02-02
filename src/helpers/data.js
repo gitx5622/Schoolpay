@@ -22,6 +22,17 @@ const schoolcolumns = [
   { name: "ACTIONS", _id: "actions" },
 ];
 
+const studentcolumns = [
+  { name: "ID", _id: "_id", sortable: true },
+  { name: "NAME OF THE STUDENT", _id: "name", sortable: true },
+  { name: "ADMISSION NO", _id: "admission_no", sortable: true },
+  { name: "SCHOOL", _id: "school", sortable: true },
+  { name: "EMAIL", _id: "email" },
+  { name: "CREATED AT", _id: "createdAt", sortable: true },
+  { name: "UPDATED AT", _id: "updatedAt", sortable: true },
+  { name: "ACTIONS", _id: "actions" },
+];
+
 const statusOptions = [
   { name: "Active", uid: "active" },
   { name: "Paused", uid: "paused" },
@@ -44,7 +55,7 @@ const navList = [
   {
     id: 4,
     title: "Students",
-    path: "/home/schools",
+    path: "/home/students",
     icon: <div className="icons8-user-male"></div>,
   },
   {
@@ -80,6 +91,7 @@ const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
 export {
   userColumns,
   schoolcolumns,
+  studentcolumns,
   navList,
   statusOptions,
   variants,

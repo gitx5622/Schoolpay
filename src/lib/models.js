@@ -18,9 +18,25 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide a password"],
     },
+    first_name: {
+      type: String,
+    },
+    last_name: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+    phone: {
+      type: Number,
+    },
     isVerified: {
       type: Boolean,
       default: false,
+    },
+    country: {
+      type: String,
+      enum: ["Kenya", "Uganda", "Tanzania", "South Sudan"],
     },
     isAdmin: {
       type: Boolean,

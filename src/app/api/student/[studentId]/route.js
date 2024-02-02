@@ -1,5 +1,5 @@
 import { connect } from "@/utils";
-import School from "@/lib/schoolModel";
+import Student from "@/lib/studentModel";
 import { NextResponse } from "next/server";
 
 connect();
@@ -7,30 +7,30 @@ connect();
 
 export async function GET(request, { params }) {
   try {
-    const schoolId = params.schoolId;
+    const studentId = params.studentId;
     
-    if (!schoolId) {
+    if (!studentId) {
       return NextResponse.json(
         { error: "Missing 'id' parameter" },
         { status: 400 }
       );
     }
 
-    //check if school exists
-    const school = await School.findOne({ _id: schoolId });
+    //check if student exists
+    const student = await Student.findOne({ _id: studentId });
 
-    if (!school) {
+    if (!student) {
       return NextResponse.json(
-        { error: "School already exist" },
+        { error: "Student does not exist" },
         { status: 400 }
       );
     }
 
     // Create a JSON response indicating successful login
     const response = NextResponse.json({
-      message: "School Details fetched successsfully",
+      message: "Student Details fetched successsfully",
       success: true,
-      data: school,
+      data: student,
     });
 
     return response;

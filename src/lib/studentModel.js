@@ -12,10 +12,13 @@ const studentSchema = new mongoose.Schema(
       required: [true, "Please provide admission number/ref number"],
       unique: true,
     },
-    school: School,
+    school: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: School,
+      required: true,
+    },
     location: {
       type: String,
-      required: [true, "Please provide location of the school"],
     },
     email: {
       type: String,
