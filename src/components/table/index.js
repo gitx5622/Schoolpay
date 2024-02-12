@@ -16,6 +16,7 @@ import {
   DropdownItem,
   Pagination,
 } from "@nextui-org/react";
+import { HashLoader } from "react-spinners";
 import { SearchIcon } from "../../components/icons/SearchIcon";
 import { ChevronDownIcon } from "../../components/icons/ChevronDownIcon";
 import { capitalize } from "../../utils";
@@ -283,6 +284,11 @@ const TableComponent = ({
               emptyContent={emptyContent}
               items={sortedItems}
               isLoading={loading}
+              loadingContent={
+                <div className="flex justify-center">
+                  <HashLoader color="#36d7b7" />
+                </div>
+              }
             >
               {(item) => (
                 <TableRow key={item._id}>

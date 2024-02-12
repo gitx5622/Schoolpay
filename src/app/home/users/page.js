@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import TableComponent from "@/components/table";
-import { statusOptions, userColumns } from "@/helpers/data";
+import { statusOptions, userColumns, navList } from "@/helpers/data";
 import axios from "axios";
 import { Chip, User } from "@nextui-org/react";
 import ViewModalComponent from "@/components/modal/viewModal";
@@ -57,6 +57,18 @@ const Users = () => {
       const response = await axios.get("/api/users");
       console.log(response.data.data);
       setData(response.data.data);
+    } catch (error) {
+      console.log("Login failed", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const editUser = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.patch("/api/schools/", credentials);
+      console.log(response);
     } catch (error) {
       console.log("Login failed", error.message);
     } finally {
@@ -140,7 +152,7 @@ const Users = () => {
   return (
     <div>
       <TableComponent
-        users={data}
+        users={navList}
         statusOptions={statusOptions}
         columns={userColumns}
         loading={loading}

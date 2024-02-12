@@ -62,9 +62,18 @@ export async function GET(request) {
     // Find the user in the database based on the user ID
     const student = await Student.find();
     console.log(student);
+
+    const schoolID = await School.findOne({ _id: student.school });
+
+    if (!schoolID) {
+      return NextResponse.json(
+        { error: "School does not exists" },
+        { status: 400 }
+      );
+    }
     return NextResponse.json({
       message: "Students found",
-      data: student,
+      data: { student, schoolID },
     });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });

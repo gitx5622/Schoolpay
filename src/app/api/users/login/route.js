@@ -60,3 +60,24 @@ export async function POST(request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
+export async function PATCH(request) {
+  try {
+    const reqBody = await request.json();
+    const { email, password } = reqBody;
+
+    //check if user exists
+    const user = await User.findOneAndUpdate({ email });
+
+    // Create a JSON response indicating successful login
+    const response = NextResponse.json({
+      message: "Update successful",
+      success: true,
+      data: user,
+    });
+
+    return response;
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
