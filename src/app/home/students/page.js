@@ -156,17 +156,17 @@ const Students = () => {
             </p>
           </div>
         );
-      case "school":
-        return (
-          <div className="flex flex-col">
-            <p className="text-bold text-small capitalize">
-              {user.school.name || "-"}
-            </p>
-            <p className="text-bold text-tiny capitalize text-default-400">
-              {user.school.name || "-"}
-            </p>
-          </div>
-        );
+      // case "school":
+      //   return (
+      //     <div className="flex flex-col">
+      //       <p className="text-bold text-small capitalize">
+      //         {user.school.name || "-"}
+      //       </p>
+      //       <p className="text-bold text-tiny capitalize text-default-400">
+      //         {user.school.name || "-"}
+      //       </p>
+      //     </div>
+      //   );
       case "createdAt":
       case "updatedAt":
         const dateObject = new Date(cellValue);
