@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { navList } from "@/helpers/data";
 import Image from "next/image";
@@ -11,10 +11,13 @@ const Sidebar = () => {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(2);
 
-  const handleClick = useCallback((item) => {
-    setSelectedIndex(item.id);
-    router.push(item.path);
-  },[router]);
+  const handleClick = useCallback(
+    (item) => {
+      setSelectedIndex(item.id);
+      router.push(item.path);
+    },
+    [router]
+  );
 
   return (
     <div className="h-screen w-80 bg-[#F5F4F5]">

@@ -60,20 +60,19 @@ export async function POST(request) {
 export async function GET(request) {
   try {
     // Find the user in the database based on the user ID
-    const student = await Student.find();
-    console.log(student);
+    const students = await Student.find().populate("school");
+    let onlyIds = []; // declaring array to store only _ids
 
-    const schoolID = await School.findOne({ _id: student.school });
-
-    if (!schoolID) {
-      return NextResponse.json(
-        { error: "School does not exists" },
-        { status: 400 }
-      );
-    }
+    // for (let i = 0; i < students.length; i++) {
+    //   if (!onlyIds.includes(students[i].school))
+    //     //checking id exist in array, if not exist push _id to onlyIds aarray
+    //     onlyIds.push(students[i].school); //push _id
+    // }
+    // const docs = await School.find({ _id: { $in: onlyIds } }).populate("school");
+    console.log(students);
     return NextResponse.json({
       message: "Students found",
-      data: { student, schoolID },
+      data: students,
     });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });

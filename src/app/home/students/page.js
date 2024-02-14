@@ -41,7 +41,6 @@ const Students = () => {
     location: "",
   });
 
-  console.log("credentials", credentials);
   const [page, setPage] = React.useState(1);
   const [filterValue, setFilterValue] = React.useState("");
   const [statusFilter, setStatusFilter] = React.useState("all");
