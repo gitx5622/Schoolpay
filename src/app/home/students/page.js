@@ -160,7 +160,7 @@ const Students = () => {
           <div className="flex flex-col">
             <p className="text-bold text-small capitalize">{cellValue}</p>
             <p className="text-bold text-tiny capitalize text-default-400">
-              {user.school.name || "-"}
+              {user?.school.name || "-"}
             </p>
           </div>
         );
