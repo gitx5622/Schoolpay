@@ -127,6 +127,7 @@ const Students = () => {
 
   const renderCell = React.useCallback((user, columnKey) => {
     const cellValue = user[columnKey];
+
     switch (columnKey) {
       case "name":
         return (
@@ -158,9 +159,11 @@ const Students = () => {
       case "school":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-small capitalize">{cellValue}</p>
+            <p className="text-bold text-small capitalize">
+              {user.school.name || "-"}
+            </p>
             <p className="text-bold text-tiny capitalize text-default-400">
-              {user?.school.name || "-"}
+              {user.school.name || "-"}
             </p>
           </div>
         );
