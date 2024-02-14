@@ -55,7 +55,6 @@ const Users = () => {
     try {
       setLoading(true);
       const response = await axios.get("/api/users");
-      console.log(response.data.data);
       setData(response.data.data);
     } catch (error) {
       console.log("Login failed", error.message);

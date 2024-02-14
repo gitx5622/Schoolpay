@@ -16,7 +16,6 @@ const Settings = () => {
   const getUserDetails = async () => {
     const res = await axios.get("/api/users/me");
     setData(res.data.data);
-    console.log(res);
   };
 
   useEffect(() => {

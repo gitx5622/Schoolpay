@@ -93,7 +93,6 @@ const Schools = () => {
     try {
       setLoading(true);
       const response = await axios.get("/api/schools");
-      console.log(response.data.data);
       setData(response.data.data);
     } catch (error) {
       console.log("Login failed", error.message);
