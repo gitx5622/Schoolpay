@@ -1,7 +1,9 @@
+"use client";
+
+import "react-toastify/dist/ReactToastify.css";
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/header";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Layout({ children }) {

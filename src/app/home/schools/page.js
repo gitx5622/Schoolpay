@@ -9,6 +9,10 @@ import CreateModalComponent from "@/components/modal/createModal";
 import ViewModalComponent from "@/components/modal/viewModal";
 import { ViewIcon } from "../../../icons/ViewIcon";
 import { getCurrentPathName } from "@/helpers/routing";
+import {
+  errorNotification,
+  successNotification,
+} from "@/components/ notification";
 
 const INITIAL_VISIBLE_COLUMNS = [
   "name",
@@ -81,9 +85,9 @@ const Schools = () => {
     try {
       setLoading(true);
       const response = await axios.post("/api/schools", credentials);
-      console.log(response);
+      successNotification("School created successfully");
     } catch (error) {
-      console.log("Login failed", error.message);
+      errorNotification("Unable to create school. Try again");
     } finally {
       setLoading(false);
     }
@@ -94,8 +98,9 @@ const Schools = () => {
       setLoading(true);
       const response = await axios.get("/api/schools");
       setData(response.data.data);
+      successNotification("Schools fetched successfully");
     } catch (error) {
-      console.log("Login failed", error.message);
+      errorNotification("Unable to fetch schools");
     } finally {
       setLoading(false);
     }
@@ -115,16 +120,16 @@ const Schools = () => {
             description={user.email}
             name={cellValue}
           >
-            {user.email}
+            {user.name}
           </User>
         );
-      case "username":
+      case "email":
         <User
           avatarProps={{ radius: "lg", src: user.avatar }}
           description={user.username}
           name={cellValue}
         >
-          {user.username}
+          {user.email}
         </User>;
       case "account_no":
         return (

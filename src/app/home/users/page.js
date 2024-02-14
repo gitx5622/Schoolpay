@@ -6,6 +6,10 @@ import { statusOptions, userColumns, navList } from "@/helpers/data";
 import axios from "axios";
 import { Chip, User } from "@nextui-org/react";
 import ViewModalComponent from "@/components/modal/viewModal";
+import {
+  errorNotification,
+  successNotification,
+} from "@/components/ notification";
 
 const INITIAL_VISIBLE_COLUMNS = ["email", "username", "createdAt", "actions"];
 
@@ -56,8 +60,9 @@ const Users = () => {
       setLoading(true);
       const response = await axios.get("/api/users");
       setData(response.data.data);
+      successNotification("Users fetched successfully");
     } catch (error) {
-      console.log("Login failed", error.message);
+      errorNotification("Unable to fetch users");
     } finally {
       setLoading(false);
     }
@@ -67,9 +72,9 @@ const Users = () => {
     try {
       setLoading(true);
       const response = await axios.patch("/api/schools/", credentials);
-      console.log(response);
+      successNotification("User editted successfully");
     } catch (error) {
-      console.log("Login failed", error.message);
+      errorNotification("Unable to edit user");
     } finally {
       setLoading(false);
     }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { Tooltip } from "@nextui-org/react";
 import { EditIcon } from "@/icons/EditIcon";
 import { DeleteIcon } from "@/icons/DeleteIcon";
@@ -24,9 +24,7 @@ import {
   TableRow,
   TableCell,
 } from "@nextui-org/react";
-import { getCurrentPathName } from "@/helpers/routing";
 import axios from "axios";
-import { usePathname } from "next/navigation";
 
 const ViewModalComponent = ({ title, onSumbit, pageId, url, page }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -145,13 +143,6 @@ const ViewModalComponent = ({ title, onSumbit, pageId, url, page }) => {
     );
   };
 
-  const handleModal = useCallback(() => {
-    if (action === "view" && url === "/api/school") choolViewModal();
-    if (action === "view" && url === "/api/user") userViewModal();
-    if (action === "delete" && url === "api/user") userDeleteModal();
-    if (action === "edit" && url === "/api/user") userEditModal();
-  }, [action, url]);
-
   return (
     <div className="relative flex items-center gap-4">
       <Tooltip content="Details">
@@ -180,7 +171,20 @@ const ViewModalComponent = ({ title, onSumbit, pageId, url, page }) => {
                     <HashLoader color="#36d7b7" />
                   </div>
                 ) : (
-                  handleModal()
+                  <>
+                    {action === "view" &&
+                      url === "/api/school" &&
+                      schoolViewModal()}
+                    {action === "view" &&
+                      url === "/api/user" &&
+                      userViewModal()}
+                    {action === "delete" &&
+                      url === "api/user" &&
+                      userDeleteModal()}
+                    {action === "edit" &&
+                      url === "/api/user" &&
+                      userEditModal()}
+                  </>
                 )}
               </ModalBody>
               <ModalFooter>

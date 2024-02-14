@@ -8,6 +8,7 @@ import { Select, SelectItem } from "@nextui-org/react";
 import axios from "axios";
 import CreateModalComponent from "@/components/modal/createModal";
 import ViewModalComponent from "@/components/modal/viewModal";
+import { errorNotification } from "@/components/ notification";
 
 const INITIAL_VISIBLE_COLUMNS = [
   "name",
@@ -86,8 +87,9 @@ const Students = () => {
       setLoading(true);
       const response = await axios.post("/api/students", credentials);
       setStudentData(response.data.data);
+      successNotification("Student created successfully");
     } catch (error) {
-      console.log("Login failed", error.message);
+      errorNotification("Unable to create student");
     } finally {
       setLoading(false);
     }
@@ -98,8 +100,9 @@ const Students = () => {
       setLoading(true);
       const response = await axios.get("/api/students");
       setStudentData(response.data.data);
+      successNotification("Students fetched successfully");
     } catch (error) {
-      console.log("Login failed", error.message);
+      errorNotification("Unable to fetch students", error.message);
     } finally {
       setLoading(false);
     }
@@ -110,8 +113,21 @@ const Students = () => {
       setLoading(true);
       const response = await axios.get(`/api/student/${studentId}`);
       setData(response.data.data);
+      successNotification("Student fetched successfully");
     } catch (error) {
-      console.log("Login failed", error.message);
+      errorNotification("Unable to fetch student");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getSchools = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get("/api/schools");
+      setSchoolData(response.data.data);
+    } catch (error) {
+      errorNotification("Unable to fetch schools");
     } finally {
       setLoading(false);
     }
@@ -122,6 +138,7 @@ const Students = () => {
   }, []);
 
   useEffect(() => {
+    getSchools();
     handleData();
   }, []);
 
@@ -156,17 +173,17 @@ const Students = () => {
             </p>
           </div>
         );
-      // case "school":
-      //   return (
-      //     <div className="flex flex-col">
-      //       <p className="text-bold text-small capitalize">
-      //         {user.school.name || "-"}
-      //       </p>
-      //       <p className="text-bold text-tiny capitalize text-default-400">
-      //         {user.school.name || "-"}
-      //       </p>
-      //     </div>
-      //   );
+      case "school":
+        return (
+          <div className="flex flex-col">
+            <p className="flex justify-center text-bold text-small capitalize">
+              {user?.school?.name || "-"}
+            </p>
+            <p className="text-bold text-tiny capitalize text-default-400">
+              {user?.school?.location || "-"}
+            </p>
+          </div>
+        );
       case "createdAt":
       case "updatedAt":
         const dateObject = new Date(cellValue);
@@ -214,8 +231,8 @@ const Students = () => {
         onSumbit={createStudent}
         modalBody={
           <>
-            <div className="pt-2">
-              <h3 className="pb-3">Name of the Student</h3>
+            <div>
+              <h3 className="pb-2">Name of the Student</h3>
               <div className="md:flex-nowrap gap-4">
                 <Input
                   type="text"
@@ -227,7 +244,7 @@ const Students = () => {
                 />
               </div>
               <div className="pt-2 pb-2">
-                <h3 className="pb-3">Enter Admission Number</h3>
+                <h3 className="pb-2">Enter Admission Number</h3>
                 <Input
                   name="admission_no"
                   placeholder="Enter Admission Number"
@@ -237,13 +254,13 @@ const Students = () => {
                 />
               </div>
               <div className="pt-2 pb-2">
-                <h3 className="pb-3">School</h3>
+                <h3 className="pb-2">School</h3>
                 <Select
                   name="school"
                   items={schoolData}
-                  label="School"
                   placeholder="Select an school"
-                  className="max-w-xs"
+                  fullWidth={true}
+                  variant="bordered"
                   value={credentials.school}
                   onChange={handleChange}
                 >
@@ -253,7 +270,7 @@ const Students = () => {
                 </Select>
               </div>
               <div className="pt-2 pb-2">
-                <h3 className="pb-3">Enter Email</h3>
+                <h3 className="pb-2">Enter Email</h3>
                 <Input
                   type="email"
                   name="email"
@@ -264,7 +281,7 @@ const Students = () => {
                 />
               </div>
               <div className="pt-2 pb-2">
-                <h3 className="pb-3">Enter Location</h3>
+                <h3 className="pb-2">Enter Location</h3>
                 <Input
                   type="text"
                   name="location"

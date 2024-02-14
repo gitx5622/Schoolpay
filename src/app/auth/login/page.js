@@ -6,6 +6,7 @@ import { useState } from "react";
 import Logo from "/public/equity.svg";
 import Microsoft from "/public/microsoft.svg";
 import axios from "axios";
+import { errorNotification, successNotification } from "@/components/ notification";
 
 function Login() {
   const router = useRouter();
@@ -23,10 +24,10 @@ function Login() {
     try {
       setLoading(true);
       const response = await axios.post("/api/users/login", loginUser);
-      console.log(response);
+      successNotification("Login successful")
       router.push("/home/dashboard");
     } catch (error) {
-      console.log("Login failed", error.message);
+      errorNotification("Login failed");
     } finally {
       setLoading(false);
     }
