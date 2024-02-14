@@ -1,5 +1,3 @@
-// src/app/verifyemail/page.ts
-
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
