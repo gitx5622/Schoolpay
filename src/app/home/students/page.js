@@ -119,21 +119,7 @@ const Students = () => {
     }
   };
 
-  const getSchools = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get("/api/schools");
-      console.log(response.data.data);
-      setSchoolData(response.data.data);
-    } catch (error) {
-      console.log("Login failed", error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleData = React.useCallback(() => {
-    getSchools();
     getStudents();
   }, []);
 
@@ -173,12 +159,11 @@ const Students = () => {
           </div>
         );
       case "school":
-        getStudent(user._id);
         return (
           <div className="flex flex-col">
             <p className="text-bold text-small capitalize">{cellValue}</p>
             <p className="text-bold text-tiny capitalize text-default-400">
-              {data.school}
+              {data.school.name}
             </p>
           </div>
         );

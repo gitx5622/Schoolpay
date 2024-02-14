@@ -61,15 +61,6 @@ export async function GET(request) {
   try {
     // Find the user in the database based on the user ID
     const students = await Student.find().populate("school");
-    let onlyIds = []; // declaring array to store only _ids
-
-    // for (let i = 0; i < students.length; i++) {
-    //   if (!onlyIds.includes(students[i].school))
-    //     //checking id exist in array, if not exist push _id to onlyIds aarray
-    //     onlyIds.push(students[i].school); //push _id
-    // }
-    // const docs = await School.find({ _id: { $in: onlyIds } }).populate("school");
-    console.log(students);
     return NextResponse.json({
       message: "Students found",
       data: students,
