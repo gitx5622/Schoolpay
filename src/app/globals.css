@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@900&family=Open+Sans:wght@400;500&family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,6 +21,10 @@
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
+}
+
+h2, p {
+  font-family: "Open Sans", sans-serif;
 }
 
 table {
@@ -113,4 +118,49 @@ th {
   background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjE2Ljg0OSIgeD0iMjAiIHk9IjQ1LjE5OSIgZmlsbD0iIzljNDAwMCI+PC9yZWN0PjxwYXRoIGQ9Ik05NSw2Mi4xOTloLTJ2LTI4SDI3djI4aC0xLjk5Yy00Ljk3MSwwLTksNC4wMjktOSw5czQuMDI5LDksOSw5SDI3djFjMCwxOC4yMjUsMTQuNzc1LDMzLDMzLDMzaDAgYzE4LjIyNSwwLDMzLTE0Ljc3NSwzMy0zM3YtMWgyYzQuOTcxLDAsOS00LjAyOSw5LTlTOTkuOTcxLDYyLjE5OSw5NSw2Mi4xOTl6IiBvcGFjaXR5PSIuMzUiPjwvcGF0aD48cGF0aCBmaWxsPSIjZmZjMWJmIiBkPSJNNjAsMTEwLjE5OUw2MCwxMTAuMTk5Yy0xOC4yMjUsMC0zMy0xNC43NzUtMzMtMzN2LTQ3aDY2djQ3QzkzLDk1LjQyNCw3OC4yMjUsMTEwLjE5OSw2MCwxMTAuMTk5eiI+PC9wYXRoPjxwYXRoIGZpbGw9IiM5YzQwMDAiIGQ9Ik0yMCw0My4wMzZjMC0yOC4wNzYsMzQuMDg0LTIxLjA1NywzNC4wODQtMjEuMDU3Yy0xNy4wNDIsMC0yLjMwMywyMi40NjEtMzQuMDg0LDMwLjg4NCBDMjAsNTAuMDU1LDIwLDQzLjAzNiwyMCw0My4wMzZ6Ij48L3BhdGg+PHBhdGggZmlsbD0iIzljNDAwMCIgZD0iTTc1LDE4LjE5OWMwLDAsMC4xNDQsMzMsMjUsMzN2LTVDMTAwLDQ2LjE5OSwxMDIsMTguMTk5LDc1LDE4LjE5OXoiPjwvcGF0aD48cGF0aCBmaWxsPSIjZmZjMWJmIiBkPSJNMjUuMDEsNzYuMTk5aDIuMDc3aDAuODMxbDAuNDc0LTE4SDI1LjAxYy00Ljk3MSwwLTksNC4wMjktOSw5djAgQzE2LjAxLDcyLjE2OSwyMC4wNCw3Ni4xOTksMjUuMDEsNzYuMTk5eiI+PC9wYXRoPjxwYXRoIGZpbGw9IiNmZmMxYmYiIGQ9Ik05NSw3Ni4xOTloLTIuMDc3aC0wLjgzMWwtMC40NzQtMThIOTVjNC45NzEsMCw5LDQuMDI5LDksOXYwQzEwNCw3Mi4xNjksOTkuOTcxLDc2LjE5OSw5NSw3Ni4xOTl6Ij48L3BhdGg+PHBhdGggZD0iTTIwLDIzLjE5OWMwLDAsMTYuNTIsMjEsMzcsMjFjMTYuMzg0LDAsMjktMTIsMjktMTJTODEuODQ1LDguODAxLDU0LjUzOSw4LjgwMSBDMzUuNDI1LDguODAxLDIwLDIzLjE5OSwyMCwyMy4xOTl6IiBvcGFjaXR5PSIuMzUiPjwvcGF0aD48cGF0aCBmaWxsPSIjOWM0MDAwIiBkPSJNMjAsMTguMTk5YzAsMCwxNi41MiwyMiwzNywyMmMxMC45MjIsMCwyNS0xMCwyNS0xMHMtMi44ODYtMjItMzAuMTkyLTIyIEMzMi42OTQsOC4xOTksMjAsMTguMTk5LDIwLDE4LjE5OXoiPjwvcGF0aD4KPC9zdmc+")
     50% 50% no-repeat;
   background-size: 100%;
+}
+
+.swiper {
+  width: 100%;
+  height: 60vh;
+  background: #871914;
+}
+
+.swiper-slide {
+  font-size: 18px;
+  color: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 40px 60px;
+}
+
+.parallax-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 130%;
+  height: 100%;
+  -webkit-background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.swiper-slide .title {
+  font-size: 41px;
+  font-weight: 300;
+}
+
+.swiper-slide .subtitle {
+  font-size: 21px;
+}
+
+.swiper-slide .text {
+  font-size: 14px;
+  max-width: 400px;
+  line-height: 1.3;
+}
+
+.swiper-one {
+  font-family: "Lucida Handwriting", "Brush Script MT", cursive;
 }

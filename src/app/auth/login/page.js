@@ -6,7 +6,10 @@ import { useState } from "react";
 import Logo from "/public/equity.svg";
 import Microsoft from "/public/microsoft.svg";
 import axios from "axios";
-import { errorNotification, successNotification } from "@/components/ notification";
+import {
+  errorNotification,
+  successNotification,
+} from "@/components/ notification";
 
 function Login() {
   const router = useRouter();
@@ -24,7 +27,7 @@ function Login() {
     try {
       setLoading(true);
       const response = await axios.post("/api/users/login", loginUser);
-      successNotification("Login successful")
+      successNotification("Login successful");
       router.push("/home/dashboard");
     } catch (error) {
       errorNotification("Login failed");
@@ -42,7 +45,9 @@ function Login() {
             School Pay
           </div>
           <br />
-          <div className="text-2xl">More than just banking</div>
+          <div className="text-2xl">
+            Making school fees payment more convenient
+          </div>
         </div>
       </div>
       <div className="grow-0">

@@ -88,6 +88,37 @@ const statusColorMap = {
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
 
+const schoolHomeData = [
+  {
+    id: 2,
+    title: "Comprehensive student information management system.",
+  },
+  {
+    id: 3,
+    title: "Realtime transaction view as payments are made",
+  },
+  {
+    id: 4,
+    title: "Powerful reporting and business intelligence module",
+  },
+  {
+    id: 5,
+    title: "Realtime reconciliation between students, banks and schools",
+  },
+  {
+    id: 6,
+    title:
+      "No need to maintain multiple school collection accounts with payment providers",
+  },
+  {
+    id: 7,
+    title: "Central place to manage fees",
+  },
+  {
+    id: 8,
+    title: "No more need to issue bankslips!",
+  },
+];
 export {
   userColumns,
   schoolcolumns,
@@ -96,5 +127,6 @@ export {
   statusOptions,
   variants,
   statusColorMap,
+  schoolHomeData,
   INITIAL_VISIBLE_COLUMNS,
 };

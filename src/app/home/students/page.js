@@ -133,13 +133,9 @@ const Students = () => {
     }
   };
 
-  const handleData = React.useCallback(() => {
-    getStudents();
-  }, []);
-
   useEffect(() => {
+    getStudents();
     getSchools();
-    handleData();
   }, []);
 
   const renderCell = React.useCallback((user, columnKey) => {
