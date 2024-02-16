@@ -120,7 +120,7 @@ export default function App() {
               href="/auth/signup"
               variant="flat"
             >
-              School Sign Up
+              Sign Up
             </Button>
           </NavbarItem>
         </NavbarContent>
